@@ -24,6 +24,7 @@ int partition(int arr[], int low, int high)
         count++;
         return (i + 1);
     }
+}
 
     void quickSort(int arr[], int low, int high)
     {
