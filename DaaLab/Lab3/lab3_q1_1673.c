@@ -13,7 +13,7 @@ int binarySearchLeftmost(int arr[], int size, int key, int *cnt)
         if (arr[mid] == key)
         {
             result = mid;
-            right = mid - 1; 
+            right = mid - 1;
         }
         else if (arr[mid] < key)
         {
@@ -58,6 +58,7 @@ int main()
     else
     {
         printf("%d not found in the array\n", key);
+        printf("Number of comparisons: %d\n", cnt);
     }
 
     return 0;
