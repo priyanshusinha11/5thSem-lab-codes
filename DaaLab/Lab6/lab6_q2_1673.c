@@ -1,64 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure to represent a symbol (character) and its frequency
-struct SYMBOL
+// Structure to represent a sym (character) and its freq
+struct SYM
 {
-    char alphabet;
-    int frequency;
+    char alpha;
+    int freq;
 };
 
 // Structure to represent a node in the Huffman tree
 struct Node
 {
-    struct SYMBOL symbol;
+    struct SYM sym;
     struct Node *left;
     struct Node *right;
 };
 
 // Min-Priority Queue Node
-struct MinPriorityQueueNode
+struct MinpqNode
 {
     struct Node *data;
-    struct MinPriorityQueueNode *next;
+    struct MinpqNode *next;
 };
 
 // Min-Priority Queue structure
-struct MinPriorityQueue
+struct Minpq
 {
-    struct MinPriorityQueueNode *front;
+    struct MinpqNode *front;
 };
 
 // Function to create a new Min-Priority Queue node
-struct MinPriorityQueueNode *createMinPriorityQueueNode(struct Node *data)
+struct MinpqNode *createMinPriorityQueueNode(struct Node *data)
 {
-    struct MinPriorityQueueNode *newNode = (struct MinPriorityQueueNode *)malloc(sizeof(struct MinPriorityQueueNode));
+    struct MinpqNode *newNode = (struct MinpqNode *)malloc(sizeof(struct MinpqNode));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
 // Function to create a new Min-Priority Queue
-struct MinPriorityQueue *createMinPriorityQueue()
+struct Minpq *createMinPriorityQueue()
 {
-    struct MinPriorityQueue *newQueue = (struct MinPriorityQueue *)malloc(sizeof(struct MinPriorityQueue));
+    struct Minpq *newQueue = (struct Minpq *)malloc(sizeof(struct Minpq));
     newQueue->front = NULL;
     return newQueue;
 }
 
 // Function to insert a node into the Min-Priority Queue
-void enqueue(struct MinPriorityQueue *queue, struct Node *data)
+void enqueue(struct Minpq *queue, struct Node *data)
 {
-    struct MinPriorityQueueNode *newNode = createMinPriorityQueueNode(data);
-    if (queue->front == NULL || data->symbol.frequency < queue->front->data->symbol.frequency)
+    struct MinpqNode *newNode = createMinPriorityQueueNode(data);
+    if (queue->front == NULL || data->sym.freq < queue->front->data->sym.freq)
     {
         newNode->next = queue->front;
         queue->front = newNode;
     }
     else
     {
-        struct MinPriorityQueueNode *current = queue->front;
-        while (current->next != NULL && current->next->data->symbol.frequency < data->symbol.frequency)
+        struct MinpqNode *current = queue->front;
+        while (current->next != NULL && current->next->data->sym.freq < data->sym.freq)
         {
             current = current->next;
         }
@@ -68,13 +68,13 @@ void enqueue(struct MinPriorityQueue *queue, struct Node *data)
 }
 
 // Function to remove and return the front node from the Min-Priority Queue
-struct Node *dequeue(struct MinPriorityQueue *queue)
+struct Node *dequeue(struct Minpq *queue)
 {
     if (queue->front == NULL)
     {
         return NULL;
     }
-    struct MinPriorityQueueNode *temp = queue->front;
+    struct MinpqNode *temp = queue->front;
     struct Node *data = temp->data;
     queue->front = queue->front->next;
     free(temp);
@@ -82,18 +82,18 @@ struct Node *dequeue(struct MinPriorityQueue *queue)
 }
 
 // Function to create a new node for the Huffman tree
-struct Node *createNode(struct SYMBOL symbol)
+struct Node *createNode(struct SYM sym)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-    newNode->symbol = symbol;
+    newNode->sym = sym;
     newNode->left = newNode->right = NULL;
     return newNode;
 }
 
 // Function to construct the Huffman tree from an array of symbols with frequencies
-struct Node *constructHuffmanTree(struct SYMBOL symbols[], int size)
+struct Node *constructHuffmanTree(struct SYM symbols[], int size)
 {
-    struct MinPriorityQueue *queue = createMinPriorityQueue();
+    struct Minpq *queue = createMinPriorityQueue();
     for (int i = 0; i < size; ++i)
     {
         enqueue(queue, createNode(symbols[i]));
@@ -102,9 +102,9 @@ struct Node *constructHuffmanTree(struct SYMBOL symbols[], int size)
     {
         struct Node *left = dequeue(queue);
         struct Node *right = dequeue(queue);
-        struct SYMBOL mergedSymbol;
-        mergedSymbol.alphabet = '\0';
-        mergedSymbol.frequency = left->symbol.frequency + right->symbol.frequency;
+        struct SYM mergedSymbol;
+        mergedSymbol.alpha = '\0';
+        mergedSymbol.freq = left->sym.freq + right->sym.freq;
         struct Node *mergedNode = createNode(mergedSymbol);
         mergedNode->left = left;
         mergedNode->right = right;
@@ -128,7 +128,7 @@ void printHuffmanCodes(struct Node *root, int arr[], int top)
     }
     if (root->left == NULL && root->right == NULL)
     {
-        printf("Character: %c, Huffman Code: ", root->symbol.alphabet);
+        printf("Character: %c, Huffman Code: ", root->sym.alpha);
         for (int i = 0; i < top; ++i)
         {
             printf("%d", arr[i]);
@@ -142,11 +142,11 @@ int main()
     int n;
     printf("Enter the number of characters: ");
     scanf("%d", &n);
-    struct SYMBOL symbols[n];
+    struct SYM symbols[n];
     for (int i = 0; i < n; ++i)
     {
-        printf("Enter character %d and its frequency: ", i + 1);
-        scanf(" %c%d", &symbols[i].alphabet, &symbols[i].frequency);
+        printf("Enter character %d and its freq: ", i + 1);
+        scanf(" %c%d", &symbols[i].alpha, &symbols[i].freq);
     }
     struct Node *root = constructHuffmanTree(symbols, n);
     int arr[100], top = 0;
