@@ -90,18 +90,16 @@ int main(int argc, char *argv[])
                 if (ent->d_type == DT_REG)
                 {
                     send(client_sock, ent->d_name, strlen(ent->d_name), 0);
-                    send(client_sock, "\n", 1, 0); // Send a newline character to separate file names
+                    send(client_sock, "\n", 1, 0);
                 }
             }
             closedir(dir);
         }
 
-        // Signal the end of the file list with an empty string
         send(client_sock, "\0", 1, 0);
 
         close(client_sock);
     }
-
     close(server_sock);
     return 0;
 }
