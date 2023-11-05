@@ -1,66 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Item
+void sort(float arr1[], int arr2[], int arr3[], int n)
 {
-    int value;
-    int weight;
-};
-
-typedef struct Item Item;
-
-int compare(const void *a, const void *b)
-{
-    double r1 = (double)(((Item *)b)->value) / (double)(((Item *)b)->weight);
-    double r2 = (double)(((Item *)a)->value) / (double)(((Item *)a)->weight);
-    if (r1 > r2)
-        return 1;
-    else if (r1 < r2)
-        return -1;
-    else
-        return 0;
+    int maxind;
+    for (int i = 0; i < n - 1; i++)
+    {
+        maxind = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr1[j] > arr1[maxind])
+            {
+                maxind = j;
+            }
+        }
+        float temp = arr1[maxind];
+        arr1[maxind] = arr1[i];
+        arr1[i] = temp;
+        int temp2 = arr2[maxind];
+        arr2[maxind] = arr2[i];
+        arr2[i] = temp2;
+        int temp3 = arr3[maxind];
+        arr3[maxind] = arr3[i];
+        arr3[i] = temp3;
+    }
 }
 
-double maximumValue(int items[][2], int n, int w)
+void main()
 {
-    Item arr[n];
-    for (int i = 0; i < n; i++)
+    int cap, item;
+    float total_profit = 0;
+    printf("Enter the capacity of the Knapack:");
+    scanf("%d", &cap);
+    printf("Enter the number of items:");
+    scanf("%d", &item);
+    int wt[item], profit[item];
+    printf("Enter the profit and weight of the items:\n");
+    for (int i = 0; i < item; i++)
     {
-        arr[i].value = items[i][1];
-        arr[i].weight = items[i][0];
+        scanf("%d %d", &profit[i], &wt[i]);
     }
-
-    qsort(arr, n, sizeof(Item), compare);
-
-    int wt = 0;
-    double ans = 0.0;
-    for (int i = 0; i < n; i++)
+    float PW[item];
+    for (int i = 0; i < item; i++)
     {
-        if (wt + arr[i].weight <= w)
+        PW[i] = (float)profit[i] / wt[i];
+    }
+  
+    sort(PW, wt, profit, item);
+    printf("Profit\tWeight\tPW\n");
+    for (int i = 0; i < item; i++)
+    {
+        printf("%d\t%d\t%f\n", profit[i], wt[i], PW[i]);
+    }
+    printf("Fraction of items taken\n");
+    for (int i = 0; i < item; i++)
+    {
+        if (wt[i] <= cap)
         {
-            wt += arr[i].weight;
-            ans += arr[i].value;
+            cap = cap - wt[i];
+            total_profit = total_profit + profit[i];
+            printf("%f ", 1.0);
         }
         else
         {
-            int remain = w - wt;
-            ans += (arr[i].value / (double)arr[i].weight) * (double)remain;
-            break;
+            total_profit = total_profit + cap * PW[i];
+            printf("%f ", (float)cap / wt[i]);
+            cap = 0;
         }
     }
-
-    return ans;
-}
-
-int main()
-{
-    int items[][2] = {{2, 40}, {3, 50}, {5, 60}};
-    int n = 3;
-    int w = 7;
-
-    double result = maximumValue(items, n, w);
-
-    printf("Maximum value obtained: %.2lf\n", result);
-
-    return 0;
+    printf("\nTotal Profit: %f.\n", total_profit);
 }
