@@ -128,7 +128,7 @@ void printHuffmanCodes(struct Node *root, int arr[], int top)
     }
     if (root->left == NULL && root->right == NULL)
     {
-        printf("Character: %c, Huffman Code: ", root->sym.alpha);
+        printf("%c : ", root->sym.alpha);
         for (int i = 0; i < top; ++i)
         {
             printf("%d", arr[i]);
@@ -150,7 +150,7 @@ int main()
     }
     struct Node *root = constructHuffmanTree(symbols, n);
     int arr[100], top = 0;
-    printf("Huffman Codes:\n");
+    printf("Inorder traversal of the tree with codes:\n");
     printHuffmanCodes(root, arr, top);
     return 0;
 }

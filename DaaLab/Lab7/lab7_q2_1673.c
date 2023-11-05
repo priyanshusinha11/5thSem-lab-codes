@@ -69,8 +69,8 @@ int main()
 
     // Call the function to find and output the length of the Longest Common Subsequence
     int length = lcs(s1, s2, result);
-    printf("The Length of Longest Common Subsequence is %d\n", length);
-    printf("The Longest Common Subsequence is: %s\n", result);
+    printf("LCS: %s\n", result);
+    printf("LCS length: %d\n", length);
 
     return 0; // Return 0 to indicate successful program execution
 }
