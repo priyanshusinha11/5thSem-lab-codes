@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void sort(float arr1[], int arr2[], int arr3[], int n)
+void sort(float pw[], int wt[], int profit[], int n)
 {
     int maxind;
     for (int i = 0; i < n - 1; i++)
@@ -9,20 +9,20 @@ void sort(float arr1[], int arr2[], int arr3[], int n)
         maxind = i;
         for (int j = i + 1; j < n; j++)
         {
-            if (arr1[j] > arr1[maxind])
+            if (pw[j] > pw[maxind])
             {
                 maxind = j;
             }
         }
-        float temp = arr1[maxind];
-        arr1[maxind] = arr1[i];
-        arr1[i] = temp;
-        int temp2 = arr2[maxind];
-        arr2[maxind] = arr2[i];
-        arr2[i] = temp2;
-        int temp3 = arr3[maxind];
-        arr3[maxind] = arr3[i];
-        arr3[i] = temp3;
+        float temp = pw[maxind];
+        pw[maxind] = pw[i];
+        pw[i] = temp;
+        int temp2 = wt[maxind];
+        wt[maxind] = wt[i];
+        wt[i] = temp2;
+        int temp3 = profit[maxind];
+        profit[maxind] = profit[i];
+        profit[i] = temp3;
     }
 }
 
