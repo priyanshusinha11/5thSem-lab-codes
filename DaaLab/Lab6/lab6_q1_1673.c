@@ -28,6 +28,7 @@ void sort(float pw[], int wt[], int profit[], int n)
 
 void main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int cap, item;
     float total_profit = 0;
     printf("Enter the capacity of the Knapack:");

@@ -11,6 +11,7 @@ void decimalToBinary(int num_3, FILE *op)
 }
 int main(int argc, char *argv[])
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n_3;
     FILE *ip, *op;
     sscanf(argv[1], "%d", &n_3);

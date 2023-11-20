@@ -39,6 +39,7 @@ void matrixChainOrder(int p[], int n, int m[][100], int s[][100])
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n;
     printf("Enter the number of matrices: ");
     scanf("%d", &n);

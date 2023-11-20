@@ -9,6 +9,7 @@ int gcd(int a_3, int b_3)
 
 int main(int argc, char *argv[])
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     FILE *ip, *op;
     ip = fopen(argv[1], "r");
     op = fopen(argv[2], "w");

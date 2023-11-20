@@ -92,6 +92,7 @@ void BFS(struct Graph *graph, int start, int *distances)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n, m;
     printf("Enter the number of nodes and edges: ");
     scanf("%d %d", &n, &m);

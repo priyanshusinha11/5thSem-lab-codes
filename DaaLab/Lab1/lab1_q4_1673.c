@@ -30,6 +30,7 @@ void ROTATE_RIGHT(int *p1, int p2, int p)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n_3;
     FILE *fp;
     fp = fopen("./lab1data.dat", "r");

@@ -44,6 +44,7 @@ int secondSmallest(int arr_3[], int n_3)
 }
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n_3;
     FILE *fp;
     fp = fopen("./lab1data.dat", "r");

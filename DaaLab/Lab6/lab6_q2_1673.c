@@ -139,6 +139,7 @@ void printHuffmanCodes(struct Node *root, int arr[], int top)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int n;
     printf("Enter the number of characters: ");
     scanf("%d", &n);

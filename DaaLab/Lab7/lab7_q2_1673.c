@@ -57,6 +57,7 @@ int lcs(char *s2, char *s1, char *result)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     char s1[1000];
     char s2[1000];
     char result[1000];

@@ -85,6 +85,7 @@ struct person *readData(int *n)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int choice, n;
     struct person *arr = NULL;
 

@@ -78,6 +78,7 @@ void displayFileContent(char *filename)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int choice;
 
     printf("\nMAIN MENU (MERGE SORT)\n");

@@ -32,6 +32,7 @@ int binarySearchLeftmost(int arr[], int size, int key, int *cnt)
 
 int main()
 {
+    printf("Priyanshu Kumar Sinha: 21051673\n");
     int size;
     printf("Enter size of array: ");
     scanf("%d", &size);
